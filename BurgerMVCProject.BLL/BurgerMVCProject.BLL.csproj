@@ -10,9 +10,4 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BurgerMVCProject.DAL\DAL.csproj" />
-    <ProjectReference Include="..\BurgerMVCProject.Domain\BurgerMVCProject.Domain.csproj" />
-  </ItemGroup>
-
 </Project>

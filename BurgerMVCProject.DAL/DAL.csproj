@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BurgerMVCProject\BurgerMVCProject.UI.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Configurations\" />
     <Folder Include="Repositories\Abstract\" />
     <Folder Include="Repositories\Concrete\" />
@@ -31,6 +27,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration" Version="6.0.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BurgerMVCProject.Domain\BurgerMVCProject.Domain.csproj" />
   </ItemGroup>
 
 </Project>

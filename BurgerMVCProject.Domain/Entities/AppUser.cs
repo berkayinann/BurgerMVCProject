@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace BurgerMVCProject.UI.Models
+namespace BurgerMVCProject.Domain.Entities
 {
     public class AppUser : IdentityUser
     {
