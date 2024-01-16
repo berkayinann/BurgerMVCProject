@@ -3,7 +3,7 @@
     public class ExtraProduct : BaseEntity
     {
 
-        public string ExtraProductId { get; set; }
+        public int ExtraProductId { get; set; }
         public int MenuId { get; set; }
 
         public Menu Menu { get; set; }
@@ -17,7 +17,5 @@
         public string ImageSrc { get; set; }
 
         public double Price { get; set; }
-
-        public string? Description { get; set; }
     }
 }

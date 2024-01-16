@@ -2,7 +2,7 @@
 {
     public class Category : BaseEntity
     {
-        public string CategoryId { get; set; }
+        public int CategoryId { get; set; }
 
         public ICollection<ExtraProduct> ExtraProducts { get; set; }
 

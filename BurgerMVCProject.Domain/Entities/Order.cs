@@ -3,8 +3,8 @@
     public class Order : BaseEntity
     {
 
-        public string OrderId { get; set; }
-        public string AppUserId { get; set; }
+        public int OrderId { get; set; }
+        public int AppUserId { get; set; }
 
         public AppUser AppUser { get; set; }
 
