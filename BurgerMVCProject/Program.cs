@@ -1,4 +1,5 @@
 
+using BurgerMVCProject.Domain.Context;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

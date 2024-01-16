@@ -1,15 +1,11 @@
-﻿using BurgerMVCProject.UI.Models;
+﻿
+using BurgerMVCProject.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BurgerMVCProject.Domain.Context
 {
-    internal class AppDbContext : IdentityDbContext<AppUser>
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         private readonly DbContextOptions<AppDbContext> dbContext;
 
