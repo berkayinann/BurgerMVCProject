@@ -10,6 +10,7 @@ namespace BurgerMVCProject.BLL.Services.Abstract
     public interface IExtraProductService
     {
         List<ExtraProduct> GetEProducts();
+        ExtraProduct GetByIdProduct(int id);
         bool AddEProduct(ExtraProduct extraProduct);
         bool UpdateEProduct(ExtraProduct extraProduct);
         bool DeleteEProduct(ExtraProduct extraProduct);

@@ -14,6 +14,7 @@ namespace DAL.Repositories.Abstract
         bool Update(T entity);
         bool Delete(T entity);
         IEnumerable<T> GetAll();
+        T GetById(int id);
         T FirstOrDefault(Expression<Func<T, bool>> expression);
         IEnumerable<T> GetWhereList(Expression<Func<T, bool>> expression);
     }

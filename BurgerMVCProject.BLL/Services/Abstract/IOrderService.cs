@@ -10,6 +10,7 @@ namespace BurgerMVCProject.BLL.Services.Abstract
     public interface IOrderService
     {
         List<Order> GetOrders();
+        Order GetByIdOrder(int id);
         bool AddOrder(Order order);
         bool UpdateOrder(Order order);
         bool DeleteOrder(Order order);
