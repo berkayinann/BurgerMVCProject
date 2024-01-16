@@ -17,6 +17,8 @@ namespace BurgerMVCProject.Domain.Entities
         [Required(ErrorMessage = "Parola bilgisi girilmelidir.")]
         public string Password { get; set; }
 
+        public string? Addresses { get; set; }
+
         public ICollection<Order> Orders { get; set; }
 
     }
