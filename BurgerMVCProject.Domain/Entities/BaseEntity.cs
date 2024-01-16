@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace BurgerMVCProject.Domain.Entities
 {
-    internal class BaseEntity
+    public abstract class BaseEntity
     {
+        public string Name { get; set; }
+
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+
+        public DateTime? ModifiedDate { get; set; }
     }
 }
