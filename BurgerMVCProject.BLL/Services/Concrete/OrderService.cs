@@ -54,5 +54,10 @@ namespace BurgerMVCProject.BLL.Services.Concrete
             };
             return orderRepository.Update(order1);
         }
+
+        public Order GetByIdOrder(int id)
+        {
+            return orderRepository.GetById(id);
+        }
     }
 }

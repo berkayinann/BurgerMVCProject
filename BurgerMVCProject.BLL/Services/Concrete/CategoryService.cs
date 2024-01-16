@@ -1,4 +1,5 @@
-﻿using DAL.Repositories.Abstract;
+﻿using BurgerMVCProject.Domain.Entities;
+using DAL.Repositories.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,10 @@ namespace BurgerMVCProject.BLL.Services.Concrete
         //{
 
         //}
+
+        public Category GetByIdCategory(int id)
+        {
+            return categoryRepository.GetById(id);
+        }
     }
 }

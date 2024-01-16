@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurgerMVCProject.UI", "BurgerMVCProject\BurgerMVCProject.UI.csproj", "{C10C4635-C14F-4A31-961D-9AB18716F99B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BurgerMVCProject.UI", "BurgerMVCProject\BurgerMVCProject.UI.csproj", "{C10C4635-C14F-4A31-961D-9AB18716F99B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurgerMVCProject.BLL", "BurgerMVCProject.BLL\BurgerMVCProject.BLL.csproj", "{008F257C-1F50-4F5B-9B28-2E8BAB5F0FC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BurgerMVCProject.BLL", "BurgerMVCProject.BLL\BurgerMVCProject.BLL.csproj", "{008F257C-1F50-4F5B-9B28-2E8BAB5F0FC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurgerMVCProject.Domain", "BurgerMVCProject.Domain\BurgerMVCProject.Domain.csproj", "{37EC311B-9E97-4C4C-B732-00734F084C2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BurgerMVCProject.Domain", "BurgerMVCProject.Domain\BurgerMVCProject.Domain.csproj", "{37EC311B-9E97-4C4C-B732-00734F084C2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "BurgerMVCProject.DAL\DAL.csproj", "{C4EA791E-5250-4B17-BCAB-7ACDE56306D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "BurgerMVCProject.DAL\DAL.csproj", "{C4EA791E-5250-4B17-BCAB-7ACDE56306D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurgerMVCProject.Core", "BurgerMVCProject.Core\BurgerMVCProject.Core.csproj", "{FA59A506-84E2-4720-BAE3-691AAD1E60CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BurgerMVCProject.Core", "BurgerMVCProject.Core\BurgerMVCProject.Core.csproj", "{FA59A506-84E2-4720-BAE3-691AAD1E60CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

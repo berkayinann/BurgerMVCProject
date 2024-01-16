@@ -75,6 +75,10 @@ namespace BurgerMVCProject.BLL.Services.Concrete
             }).ToList();
         }
 
+        public Menu GetByIdMenu(int id)
+        {
+            return menuRepository.GetById(id);
+        }
 
     }
 }

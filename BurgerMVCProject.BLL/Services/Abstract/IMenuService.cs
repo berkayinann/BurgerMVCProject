@@ -10,6 +10,7 @@ namespace BurgerMVCProject.BLL.Services.Abstract
     public interface IMenuService
     {
         List<Menu> GetMenus();
+        Menu GetByIdMenu(int id);
         bool AddMenu(Menu menu);
         bool UpdateMenu(Menu menu);
         bool DeleteMenu(Menu menu);
