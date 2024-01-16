@@ -1,4 +1,5 @@
-﻿using BurgerMVCProject.Domain.Entities;
+﻿using BurgerMVCProject.BLL.Services.Abstract;
+using BurgerMVCProject.Domain.Entities;
 using DAL.Repositories.Abstract;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BurgerMVCProject.BLL.Services.Concrete
 {
-    public class MenuService
+    public class MenuService : IMenuService
     {
         private readonly IMenuRepository menuRepository;
 
@@ -73,5 +74,7 @@ namespace BurgerMVCProject.BLL.Services.Concrete
                 Price = s.Price
             }).ToList();
         }
+
+
     }
 }

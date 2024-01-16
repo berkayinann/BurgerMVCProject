@@ -1,5 +1,10 @@
-
+using BurgerMVCProject.BLL.Services.Abstract;
+using BurgerMVCProject.BLL.Services.Concrete;
 using BurgerMVCProject.Domain.Context;
+using BurgerMVCProject.Domain.Entities;
+using DAL.Repositories.Abstract;
+using DAL.Repositories.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +12,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddTransient<IExtraProductService, ExtraProductService>();
+builder.Services.AddTransient<IMenuService, MenuService>();
+builder.Services.AddTransient<IOrderService, OrderService>();
+
+builder.Services.AddTransient<IExtraProductRepository, ExtraProductRepository>();
+builder.Services.AddTransient<IMenuRepository, MenuRepository>();
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 
 var app = builder.Build();
 
@@ -23,6 +37,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(

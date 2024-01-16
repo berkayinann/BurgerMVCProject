@@ -12,6 +12,6 @@ namespace BurgerMVCProject.BLL.Services.Abstract
         List<Menu> GetMenus();
         bool AddMenu(Menu menu);
         bool UpdateMenu(Menu menu);
-        bool DeleteMenu(int menuId);
+        bool DeleteMenu(Menu menu);
     }
 }

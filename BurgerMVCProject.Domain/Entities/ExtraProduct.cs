@@ -1,4 +1,6 @@
-﻿namespace BurgerMVCProject.Domain.Entities
+﻿using Microsoft.AspNetCore.Http;
+
+namespace BurgerMVCProject.Domain.Entities
 {
     public class ExtraProduct : BaseEntity
     {
@@ -15,6 +17,7 @@
         public int Quantity { get; set; }
 
         public string ImageSrc { get; set; }
+        public IFormFile Image { get; set; }
 
         public double Price { get; set; }
     }
