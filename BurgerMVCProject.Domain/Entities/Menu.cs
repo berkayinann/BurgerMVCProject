@@ -1,17 +1,19 @@
 ﻿using BurgerMVCProject.Domain.Enums;
+using Microsoft.AspNetCore.Http;
 using System.Drawing;
 
 namespace BurgerMVCProject.Domain.Entities
 {
     public class Menu : BaseEntity
     {
-        public string MenuId { get; set; }
+        public int MenuId { get; set; }
 
         public double Price { get; set; }
 
         public string? Description { get; set; }
 
         public string? ImageSrc { get; set; }
+        public IFormFile Image { get; set; }
 
         public int Quantity { get; set; }
 
