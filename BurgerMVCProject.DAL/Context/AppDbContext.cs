@@ -13,6 +13,11 @@ namespace BurgerMVCProject.Domain.Context
         {
             this.dbContext = dbContext;
         }
+        public DbSet<ExtraProduct> ExtraProducts { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<Menu> Menus { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
