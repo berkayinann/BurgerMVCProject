@@ -13,7 +13,12 @@ namespace DAL.Configurations
     {
         public void Configure(EntityTypeBuilder<ExtraProduct> builder)
         {
-            throw new NotImplementedException();
+            builder.HasData( new ExtraProduct
+            {
+               Category=1,
+
+            }
+                );
         }
     }
 }

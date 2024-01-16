@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace BurgerMVCProject.Domain.Enums
 {
-    public enum Size
+    public enum Category
     {
-        Small=1,
-        Medium,
-        Large,
-        ExtraLarge
+        Drink=1,
+        Burger,
+
+
+
     }
 }

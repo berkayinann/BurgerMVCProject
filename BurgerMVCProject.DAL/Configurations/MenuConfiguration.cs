@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Configurations
 {
-    internal class MenuConfiguration : IEntityTypeConfiguration<Menu>
+    public class MenuConfiguration : IEntityTypeConfiguration<Menu>
     {
         public void Configure(EntityTypeBuilder<Menu> builder)
         {
