@@ -29,7 +29,7 @@ namespace BurgerMVCProject.Controllers
                     Name="Burger",
                     Description="cheddarlı",
                     ImageSrc="~/MenuPhotos/b3.png",
-                    ExtraProducts=eProductService.GetEProducts()
+                    //ExtraProducts=eProductService.GetEProducts()
 
 
                 },

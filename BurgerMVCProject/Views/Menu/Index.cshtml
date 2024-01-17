@@ -22,13 +22,13 @@
                     <select asp-for="Quantity" asp-items="@GetQuantityOptions()">
                     </select>
                     <br>
-                    @foreach(ExtraProduct extraProduct in Model.ExtraProducts)
+@*                     @foreach(ExtraProduct extraProduct in Model.ExtraProducts)
                     {
                         
                         <input asp-for="@extraProduct.ExtraProductId" type="checkbox"                       value="@extraProduct.ExtraProductId" />
                         @extraProduct.Name
 
-                    }
+                    } *@
                     
                 </fieldset>
             </form>
