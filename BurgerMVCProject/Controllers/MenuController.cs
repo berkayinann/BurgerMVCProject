@@ -1,4 +1,5 @@
 ﻿using BurgerMVCProject.BLL.Services.Abstract;
+using BurgerMVCProject.Controllers;
 using BurgerMVCProject.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,11 +14,13 @@ namespace BurgerMVCProject.UI.Controllers
             this.menuService = menuService;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Index(int id)
         {
-            List<Menu> menuList = menuService.GetMenus();
-            return View();
+            Menu menu = HomeController.MenuList.FirstOrDefault(a => a.MenuId == id);
+            return View(menu);
         }
+
 
         public IActionResult Create()
         {

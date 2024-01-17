@@ -1,6 +1,7 @@
 ﻿using BurgerMVCProject.BLL.Services.Abstract;
 using BurgerMVCProject.Domain.Entities;
 using BurgerMVCProject.Models;
+using BurgerMVCProject.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -12,18 +13,25 @@ namespace BurgerMVCProject.Controllers
         private readonly IMenuService menuService;
         private readonly IOrderService orderService;
 
-        public IActionResult Index()
+        public static List<Menu> MenuList;
+
+        public HomeController(IExtraProductService eProductService, IMenuService menuService, IOrderService orderService)
         {
-            List<Menu> menuList = new List<Menu>()
-            {
+            this.eProductService = eProductService;
+            this.menuService = menuService;
+            this.orderService = orderService;
+
+            MenuList = new List<Menu>()
+                {
                 new Menu()
                 {
                     MenuId=1,
                     Name="Burger",
                     Description="cheddarlı",
-                    ImageSrc="~/MenuPhotos/b3.png"
-                    
-                   
+                    ImageSrc="~/MenuPhotos/b3.png",
+                    ExtraProducts=eProductService.GetEProducts()
+
+
                 },
                 new Menu()
                 {
@@ -41,7 +49,10 @@ namespace BurgerMVCProject.Controllers
                 },
 
             };
-            return View(menuList);
+        }
+        public IActionResult Index()
+        {
+            return View(MenuList);
         }
 
 

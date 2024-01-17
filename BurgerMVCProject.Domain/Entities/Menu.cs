@@ -17,8 +17,6 @@ namespace BurgerMVCProject.Domain.Entities
 
         public int Quantity { get; set; }
 
-        public int MyProperty { get; set; }
-
         public int? OrderId { get; set; }
 
         public Order Order { get; set; }
