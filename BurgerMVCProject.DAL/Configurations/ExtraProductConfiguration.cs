@@ -13,12 +13,13 @@ namespace DAL.Configurations
     {
         public void Configure(EntityTypeBuilder<ExtraProduct> builder)
         {
-            builder.HasData(new ExtraProduct
+            builder.HasData(
+            new ExtraProduct
             {
                 Category = BurgerMVCProject.Domain.Enums.Category.Drinks,
 
             }
-                ) ;
+            ) ;
         }
     }
 }
