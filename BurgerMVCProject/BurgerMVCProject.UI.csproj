@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\ExtraProductPhotos\**" />
+    <Content Remove="wwwroot\ExtraProductPhotos\**" />
+    <EmbeddedResource Remove="wwwroot\ExtraProductPhotos\**" />
+    <None Remove="wwwroot\ExtraProductPhotos\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.39" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.25" />
@@ -29,10 +36,6 @@
     <ProjectReference Include="..\BurgerMVCProject.BLL\BurgerMVCProject.BLL.csproj" />
     <ProjectReference Include="..\BurgerMVCProject.DAL\DAL.csproj" />
     <ProjectReference Include="..\BurgerMVCProject.Domain\BurgerMVCProject.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\ExtraProductPhotos\" />
   </ItemGroup>
 
 </Project>
