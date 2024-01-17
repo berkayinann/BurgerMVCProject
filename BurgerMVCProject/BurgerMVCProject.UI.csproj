@@ -32,7 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\MenuPhotos\" />
     <Folder Include="wwwroot\ExtraProductPhotos\" />
   </ItemGroup>
 
