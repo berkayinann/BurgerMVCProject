@@ -15,7 +15,7 @@ namespace DAL.Configurations
         {
             builder.HasData(new ExtraProduct
             {
-                Category = BurgerMVCProject.Domain.Enums.Category.Drink,
+                Category = BurgerMVCProject.Domain.Enums.Category.Drinks,
 
             }
                 ) ;
