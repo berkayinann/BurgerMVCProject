@@ -31,9 +31,4 @@
     <ProjectReference Include="..\BurgerMVCProject.Domain\BurgerMVCProject.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\MenuPhotos\" />
-    <Folder Include="wwwroot\ExtraProductPhotos\" />
-  </ItemGroup>
-
 </Project>

@@ -8,10 +8,10 @@ namespace BurgerMVCProject.Domain.Enums
 {
     public enum Category
     {
-        Drink=1,
-        Burger,
-
-
-
+        Drinks=1,
+        Burgers,
+        Desserts,
+        Snacks,
+        Sauces
     }
 }
