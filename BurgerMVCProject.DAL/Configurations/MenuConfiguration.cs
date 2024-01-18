@@ -20,7 +20,7 @@ namespace DAL.Configurations
                     new Menu 
                     { 
                         MenuId = 1, 
-                        Name = "Hamburger Menu", 
+                        Name = "Hamburger Menu",
                         Price = 145.00, 
                         ImageSrc= "MenuPhotos/1-hamburger-menu_145.png",
                         Size=BurgerMVCProject.Domain.Enums.Size.Medium,
@@ -35,6 +35,7 @@ namespace DAL.Configurations
                         Size = BurgerMVCProject.Domain.Enums.Size.Medium,
                         Description= "Delicacy consisting of hamburger meat, small sesame sandwich bread, pickled cucumber, cheddar cheese, mustard and ketchup. Enjoy the Cheeseburger Menu as you wish, with delicious fries and drinks!"
                     },
+
                     new Menu
                     {
                         MenuId = 3,
@@ -44,10 +45,11 @@ namespace DAL.Configurations
                         Size = BurgerMVCProject.Domain.Enums.Size.Medium,
                         Description= "Delicacy consisting of 2 hamburger meat, small sesame sandwich bread, pickled cucumber, 2 pieces of cheddar cheese, mustard and ketchup."
                     },
+         
                     new Menu
                     {
-                        MenuId = 4,
-                        Name = "Mega Double Cheeseburger Menu",
+                        MenuId=4,
+                        Name= "Mega Double Cheeseburger Menu",
                         Price = 280.00,
                         ImageSrc = "MenuPhotos/4-mega-double-cheeseburger-menu_280.png",
                         Size = BurgerMVCProject.Domain.Enums.Size.Medium,

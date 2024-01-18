@@ -6,6 +6,7 @@ using DAL.Repositories.Abstract;
 using DAL.Repositories.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,18 @@ builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<IExtraProductRepository, ExtraProductRepository>();
 builder.Services.AddTransient<IMenuRepository, MenuRepository>();
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+
+builder.Services.ConfigureApplicationCookie(optsions =>
+{
+    optsions.LoginPath = "/Account/Login";
+    optsions.ExpireTimeSpan = TimeSpan.FromSeconds(60);
+    });
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequiredLength = 6;
+    options.Password.RequireUppercase = false;
+    options.User.RequireUniqueEmail = true;
+});
 
 var app = builder.Build();
 

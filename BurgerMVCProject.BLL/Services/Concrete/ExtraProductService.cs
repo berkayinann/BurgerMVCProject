@@ -80,6 +80,5 @@ namespace BurgerMVCProject.BLL.Services.Concrete
         {
             return EProductRepository.GetById(id);
         }
-
     }
 }

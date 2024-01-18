@@ -13,8 +13,10 @@ namespace DAL.Configurations
     {
         public void Configure(EntityTypeBuilder<ExtraProduct> builder)
         {
+
             builder.ToTable("Extra Products");
             builder.HasKey(x => x.ExtraProductId);
+
             builder.HasData(
             new ExtraProduct
             {
@@ -514,7 +516,7 @@ namespace DAL.Configurations
                 Price = 70.00,
                 ImageSrc = "DessertPhotos/5-sufle-70tl.png",
             }
-                );
+
         }
     }
 }

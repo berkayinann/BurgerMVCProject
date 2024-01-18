@@ -1,0 +1,64 @@
+﻿@using BurgerMVCProject.Domain.Entities
+@model Menu
+@{
+    ViewData["Title"] = "Menu Page";
+}
+
+<body>
+    <header>
+        <h1>@Model.Name</h1>
+    </header>
+    <img src="@Url.Content(Model.ImageSrc)" />
+    <main>
+        <section>
+            <h2>@Model.Description</h2>
+        </section>
+        <section>
+            <h2>Tavukburger®</h2>
+            <form asp-controller="Order" asp-action="Create">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <fieldset>
+                    <legend>Sandviç</legend>
+                    <select asp-for="Quantity" asp-items="@GetQuantityOptions()">
+                    </select>
+                    <br>
+@*                     @foreach(ExtraProduct extraProduct in Model.ExtraProducts)
+                    {
+                        
+                        <input asp-for="@extraProduct.ExtraProductId" type="checkbox"                       value="@extraProduct.ExtraProductId" />
+                        @extraProduct.Name
+
+                    } *@
+                    
+                </fieldset>
+            </form>
+        </section>
+        <section>
+            <h2>Patates Kızartması (Orta)</h2>
+            <button>Sepete Ekle</button>
+        </section>
+        <section>
+            <h2>Sos</h2>
+            <button>Sepete Ekle</button>
+        </section>
+    </main>
+</body>
+
+
+    @functions {
+    public List<SelectListItem> GetQuantityOptions()
+    {
+        // Generate a list of SelectListItem for the dropdown
+        var quantityOptions = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "1", Text = "1" },
+            new SelectListItem { Value = "2", Text = "2" },
+            new SelectListItem { Value = "3", Text = "3" },
+            
+        };
+
+        return quantityOptions;
+    }
+}
+
+
