@@ -1,10 +1,13 @@
 ﻿using BurgerMVCProject.BLL.Services.Abstract;
 using BurgerMVCProject.Controllers;
 using BurgerMVCProject.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BurgerMVCProject.UI.Controllers
+namespace BurgerMVCProject.UI.Controllers.Admin
 {
+    [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class MenuController : Controller
     {
         private readonly IMenuService menuService;
