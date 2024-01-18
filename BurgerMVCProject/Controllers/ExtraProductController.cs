@@ -15,7 +15,7 @@ namespace BurgerMVCProject.UI.Controllers
         public IActionResult Index()
         {
             List<ExtraProduct> extraProducts = extraProductService.GetEProducts();
-            return View(extraProducts);
+            return View();
         }
 
         public IActionResult Create()
@@ -51,4 +51,3 @@ namespace BurgerMVCProject.UI.Controllers
         }
     }
 }
-
