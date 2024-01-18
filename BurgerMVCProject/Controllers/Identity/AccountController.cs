@@ -14,12 +14,14 @@ namespace BurgerMVCProject.UI.Controllers.Identity
         private readonly SignInManager<AppUser> signInManager;
         private readonly UserManager<AppUser> userManager;
         private readonly AppDbContext appDbContext;
+        private readonly PasswordHasher<AppUser> passwordHasher;
 
-        public AccountController(SignInManager<AppUser> _signInManager, UserManager<AppUser> _userManager, AppDbContext _appDbContext)
+        public AccountController(SignInManager<AppUser> _signInManager, UserManager<AppUser> _userManager, AppDbContext _appDbContext, PasswordHasher<AppUser> _passwordHasher)
         {
             this.signInManager = _signInManager;
             this.userManager = _userManager;
             this.appDbContext = _appDbContext;
+            this.passwordHasher = _passwordHasher;
         }
 
         public ActionResult Register()
@@ -124,6 +126,76 @@ namespace BurgerMVCProject.UI.Controllers.Identity
             }
             return View(loginVm);
         }
+
+        public async Task<IActionResult> Update(string id)
+        {
+            AppUser user = await userManager.FindByIdAsync(id);
+
+            if (user != null)
+            {
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(string id, string userName, string email, string password)
+        {
+            AppUser user = await userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                if (!string.IsNullOrEmpty(userName))
+                {
+                    user.UserName = userName;
+                }
+                else
+                {
+                    ModelState.AddModelError("UpdateUser", "Username cannot be empty.");
+                }
+
+                if (!string.IsNullOrEmpty(email))
+                {
+                    user.Email = email;
+                }
+                else
+                {
+                    ModelState.AddModelError("UpdateUser", "Email cannot be empty");
+                }
+
+                if (!string.IsNullOrEmpty(password))
+                {
+                    user.PasswordHash = passwordHasher.HashPassword(user, password);
+                }
+                else
+                {
+                    ModelState.AddModelError("UpdateUser", "Password cannot be empty");
+                }
+
+                if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
+                {
+                    IdentityResult result = await userManager.UpdateAsync(user);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        Errors(result);
+
+                    }
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("UpdateUser", "User Not Found");
+            }
+
+            return View(user);
+        }
+
         public async Task<IActionResult> Delete(string id)
         {
             AppUser user = await userManager.FindByIdAsync(id);
