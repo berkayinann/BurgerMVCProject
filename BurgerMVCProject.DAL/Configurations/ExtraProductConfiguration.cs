@@ -210,7 +210,7 @@ namespace DAL.Configurations
                 Price = 50.00,
                 ImageSrc = "DrinkPhotos/24-iced-mocha_50.png",
             },
-           
+
             //Burgers
             new ExtraProduct
             {
@@ -516,6 +516,7 @@ namespace DAL.Configurations
                 Price = 70.00,
                 ImageSrc = "DessertPhotos/5-sufle-70tl.png",
             }
+            );
 
         }
     }
