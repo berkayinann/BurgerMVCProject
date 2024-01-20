@@ -6,9 +6,9 @@ namespace BurgerMVCProject.Domain.Entities
     {
 
         public int ExtraProductId { get; set; }
-        public int MenuId { get; set; }
+        //public int MenuId { get; set; }
 
-        public Menu Menu { get; set; }
+        //public Menu Menu { get; set; }
         public Enums.Category Category { get; set; }
 
         public int Quantity { get; set; }
