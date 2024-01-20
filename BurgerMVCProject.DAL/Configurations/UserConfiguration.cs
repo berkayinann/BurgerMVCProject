@@ -17,35 +17,35 @@ namespace DAL.Configurations
         public void Configure(EntityTypeBuilder<AppUser> builder)
         {
             builder.HasIndex(e => e.Email).IsUnique();
-            var adminUserId = Guid.NewGuid().ToString();
-            var userUserId = Guid.NewGuid().ToString();
-            var adminRoleId = Guid.NewGuid().ToString();
-            var userRoleId = Guid.NewGuid().ToString();
-            builder.HasData(
-                new IdentityRole
-                {
-                    Id = adminRoleId,
-                    Name = "Admin",
-                    NormalizedName = "ADMIN"
-                },
-                new IdentityRole
-                {
-                    Id = userRoleId,
-                    Name = "User",
-                    NormalizedName = "USER"
-                }
-            );
-            builder.HasData(new IdentityUserRole<string>
-            {
-                UserId = adminUserId,
-                RoleId = adminRoleId
-            },
-            new IdentityUserRole<string>
-            {
-                UserId = userUserId,
-                RoleId = userRoleId
-            }
-                            );
+            //var adminUserId = Guid.NewGuid().ToString();
+            //var userUserId = Guid.NewGuid().ToString();
+            //var adminRoleId = Guid.NewGuid().ToString();
+            //var userRoleId = Guid.NewGuid().ToString();
+            //builder.HasData(
+            //    new IdentityRole
+            //    {
+            //        Id = adminRoleId,
+            //        Name = "Admin",
+            //        NormalizedName = "ADMIN"
+            //    },
+            //    new IdentityRole
+            //    {
+            //        Id = userRoleId,
+            //        Name = "User",
+            //        NormalizedName = "USER"
+            //    }
+            //);
+            //builder.HasData(new IdentityUserRole<string>
+            //{
+            //    UserId = adminUserId,
+            //    RoleId = adminRoleId
+            //},
+            //new IdentityUserRole<string>
+            //{
+            //    UserId = userUserId,
+            //    RoleId = userRoleId
+            //}
+            //                );
 
             var hasher = new PasswordHasher<AppUser>();
 
@@ -57,6 +57,7 @@ namespace DAL.Configurations
                     Email = "admin@example.com",
                     NormalizedEmail = "ADMIN@EXAMPLE.COM",
                     EmailConfirmed = true,
+                    Password= "Qwe.123",
                     PasswordHash = hasher.HashPassword(null, "Qwe.123"),
                     FirstName = "Admin",
                     LastName = "Admin",
@@ -69,6 +70,7 @@ namespace DAL.Configurations
                     Email = "john.doe@example.com",
                     NormalizedEmail = "JOHN.DOE@EXAMPLE.COM",
                     EmailConfirmed = true,
+                    Password = "P@ssword!",
                     PasswordHash = hasher.HashPassword(null, "P@ssword!"),
                     FirstName = "John",
                     LastName = "Doe",

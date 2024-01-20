@@ -8,7 +8,7 @@ namespace BurgerMVCProject.Domain.Entities
 {
     public class OrderItem
     {
-        public int OrderId { get; set; }
+        public int OrderItemId { get; set; }
         public int MenuId { get; set; }
         public int ExtraProductId { get; set; }
 

@@ -53,7 +53,7 @@ namespace BurgerMVCProject.BLL.Services.Concrete
         {
             return EProductRepository.GetAll().Select(s => new ExtraProduct()
             {
-                MenuId = s.MenuId,
+                ExtraProductId = s.ExtraProductId,
                 Name = s.Name,
                 ImageSrc = s.ImageSrc,
                 Price = s.Price
