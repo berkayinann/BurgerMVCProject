@@ -20,42 +20,26 @@ namespace BurgerMVCProject.BLL.Services.Concrete
         }
 
         public bool AddEProduct(ExtraProduct extraProduct)
-        {
-            var file = extraProduct.Image;
-            string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\\MenuPhotos", file.FileName);
-
-            using (var fileStream = new FileStream(path, FileMode.Create))
-            {
-                file.CopyToAsync(fileStream);
-            }
-
+        {   
             ExtraProduct eProduct = new()
             {
                 Name = extraProduct.Name,
                 Price = extraProduct.Price,
                 CreatedDate = DateTime.Now,
-                ImageSrc = path
+                ImageSrc = extraProduct.ImageSrc
             };
 
             return EProductRepository.Add(eProduct);
         }
 
         public bool UpdateEProduct(ExtraProduct extraProduct)
-        {
-            var file = extraProduct.Image;
-            string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\MenuPhotos", file.FileName);
-
-            using (var fileStream = new FileStream(path, FileMode.Create))
-            {
-                file.CopyToAsync(fileStream);
-            }
-
+        {            
             ExtraProduct eProduct = new()
             {
                 Name = extraProduct.Name,
                 Price = extraProduct.Price,
                 CreatedDate = DateTime.Now,
-                ImageSrc = path
+                ImageSrc = extraProduct.ImageSrc
             };
             return EProductRepository.Update(eProduct);
         }

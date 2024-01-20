@@ -19,21 +19,13 @@ namespace BurgerMVCProject.BLL.Services.Concrete
         }
 
         public bool AddMenu(Menu menu)
-        {
-            var file = menu.Image;
-            string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\\MenuPhotos", file.FileName);
-
-            using (var fileStream = new FileStream(path, FileMode.Create))
-            {
-                file.CopyToAsync(fileStream);
-            }
-
+        {         
             Menu menu1 = new()
             {
                 Name = menu.Name,
                 Price = menu.Price,
                 CreatedDate = DateTime.Now,
-                ImageSrc = path
+                ImageSrc = menu.ImageSrc
             };
 
             return menuRepository.Add(menu1);
@@ -41,20 +33,12 @@ namespace BurgerMVCProject.BLL.Services.Concrete
 
         public bool UpdateMenu(Menu menu)
         {
-            var file = menu.Image;
-            string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\MenuPhotos", file.FileName);
-
-            using (var fileStream = new FileStream(path, FileMode.Create))
-            {
-                file.CopyToAsync(fileStream);
-            }
-
             Menu menu1 = new()
             {
                 Name = menu.Name,
                 Price = menu.Price,
                 CreatedDate = DateTime.Now,
-                ImageSrc = path
+                ImageSrc = menu.ImageSrc
             };
             return menuRepository.Update(menu1);
         }

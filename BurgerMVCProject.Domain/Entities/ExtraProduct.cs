@@ -14,7 +14,6 @@ namespace BurgerMVCProject.Domain.Entities
         public int Quantity { get; set; }
 
         public string ImageSrc { get; set; }
-        public IFormFile Image { get; set; }
 
         public double Price { get; set; }
     }
