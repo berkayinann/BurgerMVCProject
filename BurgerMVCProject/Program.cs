@@ -21,7 +21,7 @@ builder.Services.AddTransient<IOrderService, OrderService>();
 
 builder.Services.AddTransient<IExtraProductRepository, ExtraProductRepository>();
 builder.Services.AddTransient<IMenuRepository, MenuRepository>();
-builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<OrderRepository, OrderRepository>();
 
 builder.Services.AddScoped<UserManager<AppUser>>();
 

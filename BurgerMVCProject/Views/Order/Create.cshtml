@@ -3,99 +3,231 @@
 @using BurgerMVCProject.UI.Models
 @model OrderVM
 @{
-    ViewData["Title"] = "Menu Page";
+    ViewData["Title"] = "Order Page";
 }
 
 @if (Model.IsMenu)
-{    
+{
     <body>
         <header>
             <h1>@Model.MenuVM.Name</h1>
         </header>
         <img src="@Url.Content(Model.MenuVM.ImageSRC)" />
         <main>
-
-                <form asp-controller="Order" asp-action="Create">
+            <div class="col">
+                <form asp-action="Create" asp-controller="Order">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <section class="form-group">
-                    <h2>@Model.MenuVM.Price</h2>
-                </section>
-                <section class="form-group">
-                    <fieldset>
-                        <legend>Sandviç</legend>
-                        <select asp-for="@Model.MenuVM.Quantity" asp-items="@GetQuantityOptions()"></select>
-                        <br>
-                        <label asp-for="@Model.MenuVM.MenuId" type="text" value="false" disabled />
-                    </fieldset>
                     <div class="form-group">
-                        <label asp-for="@Model.MenuVM.Size" class="control-label"></label>
-                        <select class="form-group" asp-for="@Model.MenuVM.Sizes">
-                            @if (Model?.MenuVM.Sizes != null)
+                        <label asp-for="@Model.MenuVM.MenuId" class="control-label">@Model.MenuVM.MenuId</label>
+                        <label asp-for="@Model.MenuVM.Price" class="control-label"><h1>Price : @Model.MenuVM.Price</h1></label>
+                        <span asp-validation-for="@Model.MenuVM.MenuId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.MenuVM.Quantity" class="control-label">@Model.MenuVM.Quantity</label>
+                        <select asp-for="@Model.MenuVM.Quantity" class="form-select">
+                            <option selected>Select</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                        
+                        <span asp-validation-for="@Model.MenuVM.Quantity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Id" class="control-label"><h1>Add Product</h1></label>
+                        <select asp-for="@Model.Id">
+                            @if (Model?.Product.Products != null)
                             {
-                                @foreach (var item in Model.MenuVM.Sizes)
+                                @foreach (var item in Model.Product.Products)
                                 {
 
                                     <option value="@item.Value">@item.Text</option>
                                 }
-
                             }
 
                         </select>
-                        <span asp-validation-for="@Model.MenuVM.Size" class="text-danger"></span>
+                        <span asp-validation-for="@Model.Product.ProductId" class="text-danger"></span>
                     </div>
-                </section>
-                <section class="form-group">
-                    <fieldset>
-                    <legend>Extra Products</legend>
-                    <div class="dropdown-center">
-                        <select asp-for="@Model.Product.ProductId" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Product Selection
-                            
-                        <ul class="dropdown-menu">
-                        @if (Model.Product.Products != null)
-                        {
-                            @foreach(var product in Model.Product.Products)
+                    <div class="form-group">
+                        <label asp-for="@Model.SoucesName" class="control-label">Select Sauces</label>
+                        <select asp-for="@Model.SoucesName">
+                            @if (Model?.Product.Products != null)
                             {
-                                    
-                                        <li><option value="@product.Value" class="dropdown-item">@product.Text</option></li>
-                                   
-                            }
-                        }
-                        </ul>
-                        </select>
-                    </div>
-                    </fieldset>
-                </section>
-                <section class="form-group">
-                    <fieldset>
-                    <legend>Sauce Selection</legend>
-                        <div class="dropdown-center">
-                            <select asp-for="@Model.SoucesName" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Centered dropdown
-                            
-                            <ul class="dropdown-menu">
-                            @if (Model.Product.Souces != null)
-                            {
-                                @foreach (var product in Model.Souces)
+                                @foreach (var item in Model.Souces)
                                 {
 
-                                        <li><option value="@product.Value" class="dropdown-item">@product.Text</option></li>
-
+                                    <option value="@item.Value">@item.Text</option>
                                 }
                             }
-                            </ul>
-                            </select>
-                        </div>
-                    </fieldset>
-                </section>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-        </form>
+                        </select>
+                        <span asp-validation-for="@Model.SoucesName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
         </main>
     </body>
 
 }
+else
+{
+    <body>
+        <header>
+            <h1>@Model.Product.Name</h1>
+        </header>
+        <img src="@Url.Content(Model.Product.ImageSRC)" />
+        <main>
+            <div class="col">
+                <div class="card h-100">
+                    <form asp-action="Create" asp-controller="Order">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Product.ProductId" class="control-label">@Model.Product.ProductId</label>
+                            <span asp-validation-for="@Model.Product.ProductId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Product.Quantity" class="control-label">@Model.Product.Quantity</label>
+                            <select asp-for="@Model.Product.Quantity" class="form-select">
+                                <option selected>Select</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                            <span asp-validation-for="@Model.MenuVM.Quantity" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Product.ProductId" class="control-label">@Model.Product.ProductId</label>
+                            <select class="form-group" asp-for="@Model.Product.ProductId">
+                                @if (Model?.ExtraProducts != null)
+                                {
+                                    @foreach (var item in Model.ExtraProducts)
+                                    {
+
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                }
+
+                            </select>
+                            <span asp-validation-for="@Model.Product.ProductId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.SoucesName" class="control-label">@Model.SoucesName</label>
+                            <select class="form-group" asp-for="@Model.SoucesName">
+                                @if (Model?.ExtraProducts != null)
+                                {
+                                    @foreach (var item in Model.Souces)
+                                    {
+
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="@Model.SoucesName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </body>
+
+}
+
+
+
+@*             <div class="col">
+                <div class="card h-100">
+                    <form asp-controller="Order" asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <section class="form-group">
+                            <h2>@Model.MenuVM.Price</h2>
+                        </section>
+                        <section class="form-group">
+                            <fieldset>
+                                <legend>Sandviç</legend>
+                                <select asp-for="@Model.MenuVM.Quantity" asp-items="@GetQuantityOptions()"></select>
+                                <br>
+                                <label asp-for="@Model.MenuVM.MenuId" type="text" value="false" disabled />
+                            </fieldset>
+                            <div class="form-group">
+                                <label asp-for="@Model.MenuVM.Size" class="control-label"></label>
+                                <select class="form-group" asp-for="@Model.MenuVM.Sizes">
+                                    @if (Model?.MenuVM.Sizes != null)
+                                    {
+                                        @foreach (var item in Model.MenuVM.Sizes)
+                                        {
+
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+
+                                    }
+
+                                </select>
+                                <span asp-validation-for="@Model.MenuVM.Size" class="text-danger"></span>
+                            </div>
+                        </section>
+                        <section class="form-group">
+                            <fieldset>
+                                <legend>Extra Products</legend>
+                                <div class="dropdown-center">
+                                    <select asp-for="@Model.Product.ProductId" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Product Selection
+
+                                        <ul class="dropdown-menu">
+                                            @if (Model.Product.Products != null)
+                                            {
+                                                @foreach (var product in Model.Product.Products)
+                                                {
+
+                                                    <li>
+                                                <option value="@product.Value" class="dropdown-item">@product.Text</option></li>
+
+                                                }
+                                            }
+                                        </ul>
+                                    </select>
+                                </div>
+                            </fieldset>
+                        </section>
+                        <section class="form-group">
+                            <fieldset>
+                                <legend>Sauce Selection</legend>
+                                <div class="dropdown-center">
+                                    <select asp-for="@Model.SoucesName" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Centered dropdown
+
+                                        <ul class="dropdown-menu">
+                                            @if (Model.Product.Souces != null)
+                                            {
+                                                @foreach (var product in Model.Souces)
+                                                {
+
+                                                    <li>
+                                                <option value="@product.Value" class="dropdown-item">@product.Text</option></li>
+
+                                                }
+                                            }
+                                        </ul>
+                                    </select>
+                                </div>
+                            </fieldset>
+                        </section>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div> *@
 @* else
 {
     <body>

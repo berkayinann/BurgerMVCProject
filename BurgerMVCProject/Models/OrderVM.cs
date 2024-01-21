@@ -20,6 +20,9 @@ namespace BurgerMVCProject.UI.Models
 
         public OrderItem OrderItem { get; set; }
 
+        public int UserId { get; set; }
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public double Price { get; set; }

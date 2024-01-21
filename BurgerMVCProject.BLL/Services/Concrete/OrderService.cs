@@ -1,6 +1,7 @@
 ﻿using BurgerMVCProject.BLL.Services.Abstract;
 using BurgerMVCProject.Domain.Entities;
 using DAL.Repositories.Abstract;
+using DAL.Repositories.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace BurgerMVCProject.BLL.Services.Concrete
 {
     public class OrderService : IOrderService
     {
-        private readonly IOrderRepository orderRepository;
+        private readonly OrderRepository orderRepository;
 
-        public OrderService(IOrderRepository orderRepository)
+        public OrderService(OrderRepository orderRepository)
         {
             this.orderRepository = orderRepository;
         }
