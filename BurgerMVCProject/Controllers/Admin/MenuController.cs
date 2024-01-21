@@ -20,8 +20,8 @@ namespace BurgerMVCProject.UI.Controllers.Admin
         [HttpGet]
         public IActionResult Index(int id)
         {
-            Menu menu = HomeController.MenuList.FirstOrDefault(a => a.MenuId == id);
-            return View(menu);
+
+            return View();
         }
 
 

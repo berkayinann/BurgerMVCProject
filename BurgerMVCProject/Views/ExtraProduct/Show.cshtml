@@ -1,4 +1,30 @@
-﻿@model BurgerMVCProject.Domain.Entities.ExtraProduct
+﻿@* @using BurgerMVCProject.Domain.Entities
+@model OrderItem
+@{
+    ViewData["Title"] = "Products Page";
+}
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @if(Model is Menu)
+    {
+        <div class="col">
+            <div class="card h-100">
+                <a href="@Url.Action("Index", "Menu", new { Id = menu.MenuId, Name=menu.Name })">
+                    <img src="@Url.Content(menu.ImageSrc)" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@menu.Name</h5>
+                        <p class="card-text">@menu.Description</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div> *@
+
+
+
+@model BurgerMVCProject.Domain.Entities.ExtraProduct
 
 @{
     ViewData["Title"] = "Create";
@@ -48,3 +74,16 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

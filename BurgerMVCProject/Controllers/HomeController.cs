@@ -25,9 +25,10 @@ namespace BurgerMVCProject.Controllers
             return View(Menus);
         }
 
-        public IActionResult eProducts()
+        public IActionResult Products()
         {
-
+            List<ExtraProduct> extraProducts = eProductService.GetEProducts();
+            return View(extraProducts);
         }
 
 

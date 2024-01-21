@@ -1,0 +1,21 @@
+﻿@using BurgerMVCProject.Domain.Entities
+@model List<ExtraProduct>
+@{
+    ViewData["Title"] = "Products Page";
+}
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (ExtraProduct product in Model)
+    {
+        <div class="col">
+            <div class="card h-100">
+                <a href="@Url.Action("Create", "Order", new { Id = product.ExtraProductId })">
+                    <img src="@Url.Content(product.ImageSrc)" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>
