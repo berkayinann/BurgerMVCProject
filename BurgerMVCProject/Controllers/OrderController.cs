@@ -24,6 +24,7 @@ namespace BurgerMVCProject.UI.Controllers
             this.eProdutService = eProdutService;
             Menuler = menuService.GetMenus();
             ExtraProducts = eProdutService.GetEProducts();
+            
         }
 
         [HttpGet]
@@ -36,7 +37,8 @@ namespace BurgerMVCProject.UI.Controllers
                 OrderVM orderVM = new();
                 orderVM.MenuVM.Menus = GetMenus();
                 orderVM.Product.Products = GetExtras();
-                orderVM.MenuVM.MenuId=menu.MenuId;
+                orderVM.Id = id;
+                orderVM.MenuVM.MenuId = id;
                 orderVM.MenuVM.Name = menu.Name;
                 orderVM.MenuVM.ImageSRC = menu.ImageSrc;
                 orderVM.MenuVM.Price = menu.Price;
@@ -50,19 +52,91 @@ namespace BurgerMVCProject.UI.Controllers
             OrderVM orderVM1 = new();
             orderVM1.Product.Products = GetExtras();
             orderVM1.MenuVM.Menus = GetMenus();
+            orderVM1.Id = id;
+            orderVM1.Product.ProductId = id;
             orderVM1.Product.Name=product.Name;
             orderVM1.Product.ProductId = product.ExtraProductId;
             orderVM1.Product.ImageSRC = product.ImageSrc;
             orderVM1.Product.Price = product.Price;
             return View(orderVM1);
+
+
         }
 
         [HttpPost]
         public IActionResult Create(OrderVM orderVM)
         {
 
+            ExtraProduct product = eProdutService.GetByIdProduct(orderVM.Id);
+            Menu menu = menuService.GetByIdMenu(orderVM.Id);
 
-            return View();
+            if (menu != null)
+            {
+                Order or = new();
+               
+
+                or.CreatedDate = DateTime.Now;
+
+                Menu menu1 = new();
+                menu1.MenuId = orderVM.Id;
+                menu1.Quantity = orderVM.MenuVM.Quantity;
+                var result1 = int.TryParse(orderVM.MenuVM.Size, out int result);
+                if (result1)
+                    menu1.Size = (Size)result;
+                menu1.Price = orderVM.MenuVM.Price;
+                menu1.CreatedDate = DateTime.Now;
+
+                or.Menus.Add(menu1);
+
+                bool isAdded = orderService.AddOrder(or);
+
+
+                if (isAdded)
+                {
+
+                    TempData["SuccessMessage"] = "Öğrenci başarıyla eklendi!";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Öğrenci eklenirken bir hata oluştu. Lütfen tekrar deneyin.");
+                    return View();
+                }
+
+            }
+
+            //Order or2 = new();
+
+            //or2.CreatedDate = DateTime.Now;
+
+            //ExtraProduct menu2 = new();
+            //menu2.MenuId = orderVM.Id;
+            //menu2.Quantity = orderVM.MenuVM.Quantity;
+            //var result1 = int.TryParse(orderVM.MenuVM.Size, out int result);
+            //if (result1)
+            //    menu1.Size = (Size)result;
+            //menu1.Price = orderVM.MenuVM.Price;
+            //menu1.CreatedDate = DateTime.Now;
+
+            //or.Menus.Add(menu1);
+
+            //bool isAdded = orderService.AddOrder(or);
+
+
+            //if (isAdded)
+            //{
+
+            //    TempData["SuccessMessage"] = "Öğrenci başarıyla eklendi!";
+            //    return RedirectToAction("Orders");
+            //}
+            //else
+            //{
+            //    ModelState.AddModelError(string.Empty, "Öğrenci eklenirken bir hata oluştu. Lütfen tekrar deneyin.");
+            //    return View();
+            //}
+
+
+            return RedirectToAction("Index");
         }
 
 
@@ -109,7 +183,7 @@ namespace BurgerMVCProject.UI.Controllers
         {
             return eProdutService.GetEProducts()
             .Where(s => s.Category == Category.Sauces )
-            .Select(s => new SelectListItem { Value = s.Category.ToString(), Text = s.Category.ToString() })
+            .Select(s => new SelectListItem { Value = s.ExtraProductId.ToString(), Text = s.Name })
             .ToList();
         }
 

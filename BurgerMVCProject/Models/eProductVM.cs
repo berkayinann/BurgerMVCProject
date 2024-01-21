@@ -14,6 +14,7 @@ namespace BurgerMVCProject.UI.Models
         public int ProductId { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
+        public int Quantity { get; set; }
         public string ImageSRC { get; set; }
         public List<SelectListItem> Souces { get; set; }
         public List<SelectListItem> Products { get; set; }

@@ -56,7 +56,8 @@ namespace BurgerMVCProject.BLL.Services.Concrete
                 ExtraProductId = s.ExtraProductId,
                 Name = s.Name,
                 ImageSrc = s.ImageSrc,
-                Price = s.Price
+                Price = s.Price,
+                Category=s.Category,
             }).ToList();
         }
 
