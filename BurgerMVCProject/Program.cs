@@ -23,11 +23,13 @@ builder.Services.AddTransient<IExtraProductRepository, ExtraProductRepository>()
 builder.Services.AddTransient<IMenuRepository, MenuRepository>();
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 
+builder.Services.AddScoped<UserManager<AppUser>>();
+
 builder.Services.ConfigureApplicationCookie(optsions =>
 {
     optsions.LoginPath = "/Account/Login";
     optsions.ExpireTimeSpan = TimeSpan.FromSeconds(60);
-    });
+});
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequiredLength = 6;

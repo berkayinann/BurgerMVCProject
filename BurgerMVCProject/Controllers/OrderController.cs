@@ -1,4 +1,5 @@
 ﻿using BurgerMVCProject.BLL.Services.Abstract;
+using BurgerMVCProject.Controllers;
 using BurgerMVCProject.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,15 +8,27 @@ namespace BurgerMVCProject.UI.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderService orderService;
-        public OrderController(IOrderService orderService)
+        private readonly IMenuService menuService;
+        private readonly IExtraProductService eProdutService;
+
+        public OrderController(IOrderService orderService, IMenuService menuService, IExtraProductService eProdutService)
         {
             this.orderService = orderService;
+            this.menuService = menuService;
+            this.eProdutService = eProdutService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int id,string name)
         {
-            List<Order> orders = orderService.GetOrders().ToList();
-            return View(orders);
+            if (name.EndsWith("Menu"))
+            {
+                Menu menu = menuService.GetByIdMenu(id);
+                return View(menu);
+
+            }
+            ExtraProduct product = eProdutService.GetByIdProduct(id);
+            return View(product);
+
         }
 
         public IActionResult Create()
