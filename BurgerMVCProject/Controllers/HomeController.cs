@@ -13,48 +13,22 @@ namespace BurgerMVCProject.Controllers
         private readonly IMenuService menuService;
         private readonly IOrderService orderService;
 
-        public static List<Menu> MenuList;
-
         public HomeController(IExtraProductService eProductService, IMenuService menuService, IOrderService orderService)
         {
             this.eProductService = eProductService;
             this.menuService = menuService;
             this.orderService = orderService;
-
-            MenuList = new List<Menu>()
-                {
-                new Menu()
-                {
-                    MenuId=1,
-                    Name="Burger",
-                    Description="cheddarlı",
-                    ImageSrc="~/MenuPhotos/b3.png",
-                    //ExtraProducts=eProductService.GetEProducts()
-
-
-                },
-                new Menu()
-                {
-                    MenuId=2,
-                    Name="Burger",
-                    Description="cheddarlı",
-                    ImageSrc="~/MenuPhotos/b3.png"
-                },
-                new Menu()
-                {
-                    MenuId=3,
-                    Name="Burger",
-                    Description="çift kaşarlı",
-                    ImageSrc="~/MenuPhotos/b3.png"
-                },
-
-            };
         }
         public IActionResult Index()
         {
-            return View(MenuList);
+            List<Menu> Menus = menuService.GetMenus();
+            return View(Menus);
         }
 
+        public IActionResult eProducts()
+        {
+
+        }
 
 
         public IActionResult Privacy()

@@ -9,7 +9,7 @@
     {
         <div class="col">
             <div class="card h-100">
-                <a href="@Url.Action("Index", "Menu", new { Id = menu.MenuId })">
+                <a href="@Url.Action("Index", "Menu", new { Id = menu.MenuId, Name=menu.Name })">
                     <img src="@Url.Content(menu.ImageSrc)" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">@menu.Name</h5>

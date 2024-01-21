@@ -1,0 +1,49 @@
+﻿@using BurgerMVCProject.UI.Models.AccountModels
+@model LoginVM
+@{
+    ViewData["Title"] = "Register Page";
+}
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Login" method="post">
+    <input type="hidden" asp-for="ReturnUrl" disabled/>
+    <div action="form-group">
+        <div action="form-floating mb-3">
+            <input asp-for="UserName" class="form-control" placeholder="User Name">
+            <label asp-for="UserName" for="floatingInput">User Name</label>
+        </div>
+    </div>
+    <div action="form-group">
+        <div action="form-floating mb-3">
+            <input asp-for="FirstName" class="form-control" placeholder="First Name">
+            <label asp-for="FirstName" for="floatingInput">First Name</label>
+        </div>
+    </div>
+    <div action="form-group">
+        <div action="form-floating mb-3">
+            <input asp-for="LastName" class="form-control" placeholder="Last Name">
+            <label asp-for="LastName" for="floatingInput">Last Name</label>
+        </div>
+    </div>
+    <div action="form-group">
+        <div action="form-floating mb-3">
+            <input asp-for="Email" class="form-control" placeholder="name@example.com">
+            <label asp-for="Email" for="floatingInput">E-mail</label>
+        </div>
+    </div>
+    <div action="form-group">
+        <div action="form-floating mb-3">
+            <input asp-for="Password" class="form-control" placeholder="Password">
+            <label asp-for="Password" for="floatingInput">Password</label>
+        </div>
+    </div>
+    <div action="form-group">
+        <div action="form-floating mb-3">
+            <input asp-for="RepeatPassword" class="form-control" placeholder="Repeat Password">
+            <label asp-for="RepeatPassword" for="floatingInput">Repeat Password</label>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sign In</button>
+</form>

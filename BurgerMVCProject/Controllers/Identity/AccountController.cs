@@ -1,6 +1,8 @@
 ﻿using BurgerMVCProject.Domain.Context;
 using BurgerMVCProject.Domain.Entities;
 using BurgerMVCProject.UI.Models;
+using BurgerMVCProject.UI.Models.AccountModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,15 +10,15 @@ using NuGet.ContentModel;
 
 namespace BurgerMVCProject.UI.Controllers.Identity
 {
-    [Area("Identity")]
+    //[Area("Identity")]
     public class AccountController : Controller
     {
         private readonly SignInManager<AppUser> signInManager;
         private readonly UserManager<AppUser> userManager;
         private readonly AppDbContext appDbContext;
-        private readonly PasswordHasher<AppUser> passwordHasher;
+        private readonly IPasswordHasher<AppUser> passwordHasher;
 
-        public AccountController(SignInManager<AppUser> _signInManager, UserManager<AppUser> _userManager, AppDbContext _appDbContext, PasswordHasher<AppUser> _passwordHasher)
+        public AccountController(SignInManager<AppUser> _signInManager, UserManager<AppUser> _userManager, AppDbContext _appDbContext, IPasswordHasher<AppUser> _passwordHasher)
         {
             this.signInManager = _signInManager;
             this.userManager = _userManager;
@@ -24,7 +26,7 @@ namespace BurgerMVCProject.UI.Controllers.Identity
             this.passwordHasher = _passwordHasher;
         }
 
-        public ActionResult Register()
+        public IActionResult Register()
         {
             if (!signInManager.IsSignedIn(User))
             {
@@ -32,6 +34,7 @@ namespace BurgerMVCProject.UI.Controllers.Identity
             }
             return RedirectToAction("Index", "Home", new { area = "" });
         }
+
         [HttpPost]
         public async Task<IActionResult> Register(UserVm userVm)
         {
@@ -83,25 +86,30 @@ namespace BurgerMVCProject.UI.Controllers.Identity
             }
             return View();
         }
-        public IActionResult Login()
+
+        [AllowAnonymous]
+        public IActionResult Login(string returnUrl)
         {
-            if (!signInManager.IsSignedIn(User))
-            {
-                return View();
-            }
-            return RedirectToAction("Index", "Home", new { area = "" });
+            //if (!signInManager.IsSignedIn(User))
+            //{
+            //    return View();
+            //}
+            //return RedirectToAction("Index", "Home", new { area = "" });
+            LoginVM login = new LoginVM();
+            login.ReturnUrl = returnUrl;
+            return View(login);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(UserVm loginVm)
+        public async Task<IActionResult> Login(LoginVM login)
         {
 
             if (ModelState.IsValid)
             {
-                var user = await userManager.FindByEmailAsync(loginVm.Email);
+                var user = await userManager.FindByEmailAsync(login.Email);
                 if (user != null)
                 {
-                    var result = await signInManager.PasswordSignInAsync(user.UserName, loginVm.Password, false, false);
+                    var result = await signInManager.PasswordSignInAsync(user.Email, login.Password, false, false);
 
                     if (result.Succeeded)
                     {
@@ -124,7 +132,7 @@ namespace BurgerMVCProject.UI.Controllers.Identity
 
                 }
             }
-            return View(loginVm);
+            return View(login);
         }
 
         public async Task<IActionResult> Update(string id)
