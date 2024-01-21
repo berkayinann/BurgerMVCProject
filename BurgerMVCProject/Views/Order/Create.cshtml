@@ -1,4 +1,213 @@
-﻿@model BurgerMVCProject.Domain.Entities.Order
+﻿@using BurgerMVCProject.Domain.Entities
+@using BurgerMVCProject.UI.Controllers
+@using BurgerMVCProject.UI.Models
+@model OrderVM
+@{
+    ViewData["Title"] = "Menu Page";
+}
+
+@if (Model.IsMenu)
+{    
+    <body>
+        <header>
+            <h1>@Model.MenuVM.Name</h1>
+        </header>
+        <img src="@Url.Content(Model.MenuVM.ImageSRC)" />
+        <main>
+
+                <form asp-controller="Order" asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <section class="form-group">
+                    <h2>@Model.MenuVM.Price</h2>
+                </section>
+                <section class="form-group">
+                    <fieldset>
+                        <legend>Sandviç</legend>
+                        <select asp-for="@Model.MenuVM.Quantity" asp-items="@GetQuantityOptions()"></select>
+                        <br>
+                        <label asp-for="@Model.MenuVM.MenuId" type="text" value="false" disabled />
+                    </fieldset>
+                    <div class="form-group">
+                        <label asp-for="@Model.MenuVM.Size" class="control-label"></label>
+                        <select class="form-group" asp-for="@Model.MenuVM.Sizes">
+                            @if (Model?.MenuVM.Sizes != null)
+                            {
+                                @foreach (var item in Model.MenuVM.Sizes)
+                                {
+
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+
+                            }
+
+                        </select>
+                        <span asp-validation-for="@Model.MenuVM.Size" class="text-danger"></span>
+                    </div>
+                </section>
+                <section class="form-group">
+                    <fieldset>
+                    <legend>Extra Products</legend>
+                    <div class="dropdown-center">
+                        <select asp-for="@Model.Product.ProductId" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Product Selection
+                            
+                        <ul class="dropdown-menu">
+                        @if (Model.Product.Products != null)
+                        {
+                            @foreach(var product in Model.Product.Products)
+                            {
+                                    
+                                        <li><option value="@product.Value" class="dropdown-item">@product.Text</option></li>
+                                   
+                            }
+                        }
+                        </ul>
+                        </select>
+                    </div>
+                    </fieldset>
+                </section>
+                <section class="form-group">
+                    <fieldset>
+                    <legend>Sauce Selection</legend>
+                        <div class="dropdown-center">
+                            <select asp-for="@Model.SoucesName" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Centered dropdown
+                            
+                            <ul class="dropdown-menu">
+                            @if (Model.Product.Souces != null)
+                            {
+                                @foreach (var product in Model.Souces)
+                                {
+
+                                        <li><option value="@product.Value" class="dropdown-item">@product.Text</option></li>
+
+                                }
+                            }
+                            </ul>
+                            </select>
+                        </div>
+                    </fieldset>
+                </section>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+        </form>
+        </main>
+    </body>
+
+}
+@* else
+{
+    <body>
+        <header>
+            <h1>@Model.Product.Name</h1>
+        </header>
+        <img src="@Url.Content(Model.Product.ImageSRC)" />
+        <main>
+
+            <form asp-controller="Order" asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <section>
+                    <h2>@Model.Product.Price</h2>
+                </section>
+                <section>
+                    <fieldset>
+                        <legend>Sandviç</legend>
+                        <select asp-for="@Model.Product.Quantity" asp-items="@GetQuantityOptions()"></select>
+                        <br>
+                        <input asp-for="@Model.Product.MenuId" type="checkbox" value="@Model.Product.MenuId" />
+                    </fieldset>
+                </section>
+                <section>
+                    <fieldset>
+                        <legend>Extra Products</legend>
+                        <div class="dropdown-center">
+                            <select asp-for="@Model.Product.ProductId" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Product Selection
+                            </select>
+                            @if (OrderController.ExtraProducts != null)
+                            {
+                                @foreach (ExtraProduct product in OrderController.ExtraProducts)
+                                {
+                                    <ul class="dropdown-menu">
+                                        <li><option value="@product.ExtraProductId" class="dropdown-item" href="#">@product.Name</option></li>
+                                    </ul>
+                                }
+                            }
+                        </div>
+                    </fieldset>
+                </section>
+                <section>
+                    <fieldset>
+                        <legend>Sauce Selection</legend>
+                        <div class="dropdown-center">
+                            <select asp-for="@Model.Product.ProductId" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Centered dropdown
+                            </select>
+                            @if (Model.Product.Categories != null)
+                            {
+                                @foreach (ExtraProduct product in OrderController.ExtraProducts)
+                                {
+                                    @if (product.Category.ToString() == "Sauces")
+                                    {
+                                        <ul class="dropdown-menu">
+                                            <li><option value="@product.ExtraProductId" class="dropdown-item" href="#">@product.Name</option></li>
+                                        </ul>
+
+                                    }
+                                }
+                            }
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </fieldset>
+                </section>
+            </form>
+        </main>
+    </body>
+} *@
+
+
+
+
+@functions {
+    public List<SelectListItem> GetQuantityOptions()
+    {
+        // Generate a list of SelectListItem for the dropdown
+        var quantityOptions = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "1", Text = "1" },
+            new SelectListItem { Value = "2", Text = "2" },
+            new SelectListItem { Value = "3", Text = "3" },
+
+        };
+
+        return quantityOptions;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* @model BurgerMVCProject.Domain.Entities.Order
 
 @{
     ViewData["Title"] = "Create";
@@ -47,4 +256,4 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-}
+} *@

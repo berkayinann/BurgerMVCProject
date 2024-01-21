@@ -24,7 +24,7 @@ namespace DAL.Configurations
                 ExtraProductId = 1,
                 Name = "Coca-Cola Zero Sugar (33 cl)",
                 Price = 30.00,
-                ImageSrc = "DrinkPhotos/1-coca-cola-zero-sugar_30tl.png",
+                ImageSrc = "DrinkPhotos/1-coca-cola-zero-sugar_30tl.png"
             },
             new ExtraProduct
             {
